@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
+use App\Models\User;
 
 class VehicleController extends Controller
 {
@@ -14,7 +15,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::paginate(5);
+        $vehicles = Vehicle::paginate(1);
         return view('vehicle.index',compact('vehicles'));
     }
 
@@ -25,7 +26,8 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('vehicle.create');
+        $users = User::All();
+        return view('vehicle.create', compact('users'));
     }
 
     /**
@@ -35,7 +37,24 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $fields = [
+            'placa'=>'required|string|max:50|unique:vehicles',
+            'color'=>'required|string|max:50',
+            'marca'=>'required|string|max:100',
+            'tipo'=>'required',
+            'propietario_id'=>'required',
+            'conductor_id'=>'required',
+
+        ];
+        $message=[
+            'required'=>'El :attribute es requerido',
+            'color.required'=>'El color es requerido',
+            'marca.required'=>'La marca es requerido',
+        ];
+
+        $this->validate($request, $fields,$message);
+
         $vehicle = request()->except('_token');
         Vehicle::insert($vehicle);
 
@@ -62,7 +81,8 @@ class VehicleController extends Controller
     public function edit($id)
     {
         $vehicle = Vehicle::findOrFail($id);
-        return view('vehicle.edit',compact('vehicle'));
+        $users = User::All();
+        return view('vehicle.edit',compact('vehicle','users'));
     }
 
     /**
@@ -74,11 +94,29 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $fields = [
+            'placa'=>'required|string|max:50|unique:vehicles',
+            'color'=>'required|string|max:50',
+            'marca'=>'required|string|max:100',
+            'tipo'=>'required',
+            'propietario_id'=>'required',
+            'conductor_id'=>'required',
+
+        ];
+        $message=[
+            'required'=>'El :attribute es requerido',
+            'color.required'=>'El color es requerido',
+            'marca.required'=>'La marca es requerido',
+        ];
+
+        $this->validate($request, $fields,$message);
+
         $vehicle = request()->except('_token','_method');
         Vehicle::where('id',$id)->update($vehicle);
 
         $vehicle=Vehicle::findOrFail($id);
-        return view('vehicle.edit',compact('vehicle') );
+
+        return redirect('vehicles')->with('message','Vehículo modificado');
     }
 
     /**

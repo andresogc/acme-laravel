@@ -19,4 +19,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::resource('vehicles',VehicleController::class);
+
+Auth::routes(['register'=>false,'reset'=>false,'login'=>false]);
