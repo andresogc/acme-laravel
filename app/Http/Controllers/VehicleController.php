@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vehicle;
 
 class VehicleController extends Controller
 {
@@ -13,7 +14,8 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
+        $vehicles = Vehicle::paginate(5);
+        return view('vehicle.index',compact('vehicles'));
     }
 
     /**
@@ -23,7 +25,7 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehicle.create');
     }
 
     /**
@@ -34,7 +36,10 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vehicle = request()->except('_token');
+        Vehicle::insert($vehicle);
+
+        return redirect('vehicles')->with('message','Vehículo agregado con éxito');
     }
 
     /**
@@ -56,7 +61,8 @@ class VehicleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vehicle = Vehicle::findOrFail($id);
+        return view('vehicle.edit',compact('vehicle'));
     }
 
     /**
@@ -68,7 +74,11 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vehicle = request()->except('_token','_method');
+        Vehicle::where('id',$id)->update($vehicle);
+
+        $vehicle=Vehicle::findOrFail($id);
+        return view('vehicle.edit',compact('vehicle') );
     }
 
     /**
@@ -80,5 +90,7 @@ class VehicleController extends Controller
     public function destroy($id)
     {
         //
+        Vehicle::destroy($id);
+        return redirect('vehicles')->with('message','Vehículo eliminado');
     }
 }

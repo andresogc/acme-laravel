@@ -52,4 +52,9 @@ class User extends Authenticatable
         return $this->hasMany(Vehicle::class);
     }
 
+    public function role()
+    {
+        return $this->hasOne(Role::class);
+    }
+
 }
