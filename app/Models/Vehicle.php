@@ -10,8 +10,14 @@ class Vehicle extends Model
     use HasFactory;
 
 
-    public function vehicle()
+    public function userPropietario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'propietario_id');
+    }
+
+
+    public function userConductor()
+    {
+        return $this->belongsTo(User::class,'conductor_id');
     }
 }

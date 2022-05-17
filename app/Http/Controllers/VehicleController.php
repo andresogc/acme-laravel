@@ -16,6 +16,8 @@ class VehicleController extends Controller
     public function index()
     {
         $vehicles = Vehicle::paginate(1);
+
+        //dd($vehicles[0]->userConductor);
         return view('vehicle.index',compact('vehicles'));
     }
 
@@ -37,7 +39,7 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $fields = [
             'placa'=>'required|string|max:50|unique:vehicles',
             'color'=>'required|string|max:50',

@@ -32,8 +32,8 @@
                     <td>{{$vehicle->color}}</td>
                     <td>{{$vehicle->marca}}</td>
                     <td>{{$vehicle->tipo}}</td>
-                    <td>{{$vehicle->propietario_id}}</td>
-                    <td>{{$vehicle->conductor_id}}</td>
+                    <td>{{$vehicle->userPropietario->primer_nombre}} {{$vehicle->userPropietario->primer_apellido}}</td>
+                    <td>{{$vehicle->userConductor->primer_nombre}} {{$vehicle->userConductor->primer_apellido}}</td>
                     <td>
                         <a class="btn btn-warning" href="{{route('vehicles.edit',['vehicle'=>$vehicle->id])}}">
                             Editar
