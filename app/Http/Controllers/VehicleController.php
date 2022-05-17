@@ -17,7 +17,7 @@ class VehicleController extends Controller
     {
         $vehicles = Vehicle::paginate(1);
 
-        //dd($vehicles[0]->userConductor);
+       
         return view('vehicle.index',compact('vehicles'));
     }
 

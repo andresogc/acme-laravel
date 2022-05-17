@@ -37,7 +37,7 @@
         <option value="{{null}}">Seleccione una opción</option>
             @foreach ($users as $user)
                 @if ($user->role_id == 1 )
-                    <option value="{{$user->id}}">{{$user->primer_nombre}} {{$user->primer_apellido}}</option>
+                    <option value="{{$user->id}}" {{isset($vehicle->propietario_id) && $vehicle->propietario_id == $user->id ? 'selected' :''}}>{{$user->primer_nombre}} {{$user->primer_apellido}}</option>
                 @endif
             @endforeach
     </select>
@@ -47,7 +47,7 @@
     <select class="form-control" name="conductor_id">
         <option value="{{null}}">Seleccione una opción</option>
         @foreach ($users as $user)
-        @if ($user->role_id == 2 && $user->assigned == 'No asignado')
+        @if ($user->role_id == 2 )
             <option value="{{$user->id}}" {{isset($vehicle->conductor_id) && $vehicle->conductor_id == $user->id ? 'selected' :''}}    >{{$user->primer_nombre}} {{$user->primer_apellido}}</option>
         @endif
     @endforeach
