@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +23,6 @@ Route::get('/', function () {
 
 
 Route::resource('vehicles',VehicleController::class);
+Route::resource('users',UserController::class);
 
 Auth::routes(['register'=>false,'reset'=>false,'login'=>false]);

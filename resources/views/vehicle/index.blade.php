@@ -10,7 +10,9 @@
         </div>
         @endif
 
-
+        <div>
+            <h3>Vehículos</h3>
+        </div>
 
     <a href="{{route('vehicles.create')}}" class="btn btn-success mb-3">Crear un vehiculo</a>
     <table class="table table-dark table-striped">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2022 at 01:02 AM
+-- Generation Time: May 18, 2022 at 03:16 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -162,9 +162,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `cedula`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `direccion`, `telefono`, `assigned`, `role_id`, `city_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '123456', 'aura', NULL, 'perez', 'garcia', 'cl 4', '55555', 'Asignado', 1, 1, NULL, NULL, NULL),
+(1, '123456', 'aura', NULL, 'perez', 'garcia', 'cl 4', '55555', 'No aplica', 1, 1, NULL, NULL, NULL),
 (2, '123457', 'lina', 'casandra', 'lunares', 'alvarez', 'cl 47', '6545641', 'Asignado', 2, 2, NULL, NULL, NULL),
-(3, '123458', 'tatiana', NULL, 'ortiz', 'manjares', 'cl 1', '465', 'No aplica', 2, 1, NULL, NULL, NULL);
+(3, '123458', 'tatiana', NULL, 'ortiz', 'manjares', 'cl 1', '465', 'Asignado', 2, 1, NULL, NULL, NULL),
+(4, '99', 'Omnis', 'Eligendi', 'Quis', 'Dolor', 'Blanditiis id quis q', '96', 'No asignado', 2, 1, NULL, NULL, '2022-05-18 06:03:12');
 
 -- --------------------------------------------------------
 
@@ -293,7 +294,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vehicles`
